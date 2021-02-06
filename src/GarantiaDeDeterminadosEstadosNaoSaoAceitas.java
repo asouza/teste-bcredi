@@ -4,9 +4,10 @@ public class GarantiaDeDeterminadosEstadosNaoSaoAceitas implements Validacao {
 
 	@Override
 	public boolean taValida(Proposta proposta) {
-		return !proposta.garantiasForaDosEstados(
+		return proposta.garantiasEmDeterminadosEstados(
 				Set.of(SiglaEstado.PR, SiglaEstado.SC, SiglaEstado.RS))
 				.isEmpty();
+		
 	}
 
 }

@@ -140,10 +140,10 @@ public class Proposta {
 	 * @param siglas siglas de estados que nao queremos ter garantias
 	 * @return
 	 */
-	public Collection<Garantia> garantiasForaDosEstados(
+	public Collection<Garantia> garantiasEmDeterminadosEstados(
 			Collection<SiglaEstado> siglas) {
 		return this.garantias.stream()
-				.filter(garantia -> !garantia.pertenceAEstados(siglas))
+				.filter(garantia -> garantia.pertenceAEstados(siglas))
 				.collect(Collectors.toSet());
 	}
 
