@@ -1,8 +1,12 @@
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class Solution {
-  // Essa função recebe uma lista de mensagens, por exemplo:
+	
+
+// Essa função recebe uma lista de mensagens, por exemplo:
   //
   // [
   //   "72ff1d14-756a-4549-9185-e60e326baf1b,proposal,created,2019-11-11T14:28:01Z,80921e5f-4307-4623-9ddb-5bf826a31dd7,1141424.0,240",
@@ -14,11 +18,23 @@ public class Solution {
   // Complete a função para retornar uma String com os IDs das propostas válidas no seguinte formato (separado por vírgula):
   // "52f0b3f2-f838-4ce2-96ee-9876dd2c0cf6,51a41350-d105-4423-a9cf-5a24ac46ae84,50cedd7f-44fd-4651-a4ec-f55c742e3477"
   public static String processMessages(List<String> messages) {
+	  Map<String, Logica> logicas = Map.of("proposal.created",new CriaProposta());			  
+	  Propostas propostas = new Propostas();	  
 	  
 //	* para cada linha preciso executar uma lógica em função do tipo de operacao
 //	* para cada execução de lógica eu preciso acessar possíveis propostas já criadas
 //	* para cada linha também já pode ir executando as validações por proposta
 //	* no final da execução só ficam as propostas que geraram uma saída verdadeira para as validações
+	  
+	for(String message : messages) {
+		String[] partesDaMensagem = message.split(",");
+		String tipoLogica = partesDaMensagem[1]+"."+partesDaMensagem[2];
+		Logica logicaASerExecutada = logicas.get(tipoLogica);
+		
+		Objects.requireNonNull(logicaASerExecutada, "Não foi possível encontrar a lógica para o tipo "+tipoLogica);
+		
+		Aprovacao aprovacao = logicaASerExecutada.executa(message,propostas);
+	}
 	 
     return "";
   }
