@@ -37,7 +37,11 @@ public class Proposta {
 	 */
 	public boolean valorEntre(BigDecimal minimo, BigDecimal maximo) {
 		return this.valorEmprestimo.compareTo(minimo) >= 1
-				&& this.valorEmprestimo.compareTo(maximo) <= 1;
+				&& this.valorEmprestimo.compareTo(maximo) < 1;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new BigDecimal("3500000.0").compareTo(new BigDecimal("3000000")));
 	}
 
 	/**
