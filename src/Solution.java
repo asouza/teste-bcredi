@@ -34,7 +34,10 @@ public class Solution {
 		Objects.requireNonNull(logicaASerExecutada, "Não foi possível encontrar a lógica para o tipo "+tipoLogica);
 		
 		Proposta propostaASerValidada = logicaASerExecutada.executa(message,propostas);
-		//executa validacao contra a proposta
+		
+		System.out.println(propostas);
+		
+		
 	}
 	 
     return "";
