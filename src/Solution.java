@@ -24,7 +24,8 @@ public class Solution {
   public static String processMessages(List<String> messages) {
 	  Map<String, Logica> logicas = Map.of(
 			  "proposal.created",new CriaProposta(),
-			  "proponent.added",new AdicionaProponente()
+			  "proponent.added",new AdicionaProponente(),
+			  "warranty.added",new AdicionaGarantia()
 			  );			  
 	  Propostas propostas = new Propostas();	
 	  List<Validacao> validacoes = List.of(

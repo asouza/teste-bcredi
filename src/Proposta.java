@@ -2,8 +2,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;import java.util.stream.Collector;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Proposta {
@@ -12,6 +11,7 @@ public class Proposta {
 	private BigDecimal valorEmprestimo;
 	private int parcelas;
 	private Set<Proponente> proponentes = new HashSet<>();
+	private Set<Garantia> garantias = new HashSet<>();
 
 	public Proposta(String idProposta, BigDecimal valorEmprestimo,
 			int parcelas) {
@@ -24,7 +24,7 @@ public class Proposta {
 	public String toString() {
 		return "Proposta [id=" + id + ", valorEmprestimo=" + valorEmprestimo
 				+ ", parcelas=" + parcelas + ", proponentes=" + proponentes
-				+ "]";
+				+ ", garantias=" + garantias + "]";
 	}
 
 	/**
@@ -111,5 +111,19 @@ public class Proposta {
 		BigDecimal valorParcelaProjetado = valorParcela.multiply(new BigDecimal(multiplicador));
 		return valorParcelaProjetado;
 	}
+
+	public void adicionaGarantia(String idGarantia, BigDecimal valorGarantia,
+			SiglaEstado siglaEstado) {
+		Garantia novaGarantia = new Garantia(idGarantia,valorGarantia,siglaEstado);
+		boolean adicionou = this.garantias.add(novaGarantia);
+		
+		if (!adicionou) {
+			throw new IllegalStateException(
+					"Foi tentado adicionar uma garantia com equals true com essa daqui "
+							+ novaGarantia);
+		}		
+	}
+	
+	
 
 }
