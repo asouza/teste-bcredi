@@ -1,6 +1,6 @@
 
 public interface Logica {
 
-	Aprovacao executa(String message, Propostas propostas);
+	Proposta executa(String message, Propostas propostas);
 
 }
