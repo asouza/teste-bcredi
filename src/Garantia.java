@@ -49,6 +49,10 @@ public class Garantia {
 	public boolean pertenceAEstados(Collection<SiglaEstado> siglas) {
 		return siglas.contains(this.siglaEstado);
 	}
+
+	public BigDecimal getValor() {
+		return valorGarantia;
+	}
 	
 	
 

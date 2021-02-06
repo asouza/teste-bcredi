@@ -36,7 +36,8 @@ public class Solution {
 			  new TodosProponentesDevemSerMaioresDeDezoito(),
 			  new RendaProponentePrincipal(),
 			  new MinimoDeUmaGarantia(),
-			  new GarantiaDeDeterminadosEstadosNaoSaoAceitas()
+			  new GarantiaDeDeterminadosEstadosNaoSaoAceitas(),
+			  new SomaDasGarantiasMaiorQueDobroEmprestimo()
 	  );
 	  Set<String> idPropostasValidas = new HashSet<>();
 	  

@@ -135,11 +135,31 @@ public class Proposta {
 		return this.garantias.size();
 	}
 
+	/**
+	 * 
+	 * @param siglas siglas de estados que nao queremos ter garantias
+	 * @return
+	 */
 	public Collection<Garantia> garantiasForaDosEstados(
 			Collection<SiglaEstado> siglas) {
 		return this.garantias.stream()
 				.filter(garantia -> !garantia.pertenceAEstados(siglas))
 				.collect(Collectors.toSet());
+	}
+
+	public BigDecimal somaGarantias() {
+		return this.garantias.stream().map(garantia -> garantia.getValor())
+				.reduce(BigDecimal.ZERO,
+						(atual, proximo) -> atual.add(proximo));
+	}
+
+	/**
+	 * 
+	 * @param multiplicador multiplicador para projetar valor de emprestimo
+	 * @return
+	 */
+	public BigDecimal projetaValorEmprestimo(int multiplicador) {
+		return this.valorEmprestimo.multiply(new BigDecimal(multiplicador));
 	}
 
 }
