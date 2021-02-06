@@ -1,6 +1,4 @@
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+//20
 public class Solution {
 	
 
@@ -22,22 +21,38 @@ public class Solution {
   //
   // Complete a função para retornar uma String com os IDs das propostas válidas no seguinte formato (separado por vírgula):
   // "52f0b3f2-f838-4ce2-96ee-9876dd2c0cf6,51a41350-d105-4423-a9cf-5a24ac46ae84,50cedd7f-44fd-4651-a4ec-f55c742e3477"
+	//20
   public static String processMessages(List<String> messages) {
+	  //1
+	  //1
+	  //1
+	  //1
 	  Map<String, Logica> logicas = Map.of(
 			  "proposal.created",new CriaProposta(),
 			  "proponent.added",new AdicionaProponente(),
 			  "warranty.added",new AdicionaGarantia()
 			  );			  
+	  //1
 	  Propostas propostas = new Propostas();	
+	  //1
 	  List<Validacao> validacoes = List.of(
+			  //1
 			  new ValorDoEmprestimo(),
+			  //1
 			  new TempoMaximoPagamento(),
+			  //1
 			  new MinimoDoisProponentes(),
+			  //1
 			  new MinimoUmProponentePrincipal(),
+			  //1
 			  new TodosProponentesDevemSerMaioresDeDezoito(),
+			  //1
 			  new RendaProponentePrincipal(),
+			  //1
 			  new MinimoDeUmaGarantia(),
+			  //1
 			  new GarantiaDeDeterminadosEstadosNaoSaoAceitas(),
+			  //1
 			  new SomaDasGarantiasMaiorQueDobroEmprestimo()
 	  );
 	  Set<String> idPropostasValidas = new LinkedHashSet<>();
@@ -47,20 +62,26 @@ public class Solution {
 //	* para cada linha também já pode ir executando as validações por proposta
 //	* no final da execução só ficam as propostas que geraram uma saída verdadeira para as validações
 	  
+	//1
 	for(String message : messages) {
 		String[] partesDaMensagem = message.split(",");	
 		String tipoLogica = partesDaMensagem[1]+"."+partesDaMensagem[2];
+		
 		Logica logicaASerExecutada = logicas.get(tipoLogica);
 		
 		Objects.requireNonNull(logicaASerExecutada, "Não foi possível encontrar a lógica para o tipo "+tipoLogica);
-		
+		//1
 		Proposta propostaASerValidada = logicaASerExecutada.executa(message,propostas);
-				
+			
+		//1
 		for (Validacao validacao : validacoes) {
 			boolean resultado = validacao.taValida(propostaASerValidada);
+			//1
 			if(resultado) {
 				idPropostasValidas.add(propostaASerValidada.id);
-			} else {
+			}
+			//1
+			else {
 				idPropostasValidas.remove(propostaASerValidada.id);
 				break;
 			}

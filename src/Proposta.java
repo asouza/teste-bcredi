@@ -5,14 +5,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+//10
 public class Proposta {
 
 	public final String id;
 	private BigDecimal valorEmprestimo;
 	private int parcelas;
+	//1
 	private Set<Proponente> proponentes = new HashSet<>();
+	//1
 	private Set<Garantia> garantias = new HashSet<>();
 
 	public Proposta(String idProposta, BigDecimal valorEmprestimo,
@@ -66,6 +68,7 @@ public class Proposta {
 				salario, principal);
 		boolean adicionou = this.proponentes.add(novoProponente);
 
+		//1
 		if (!adicionou) {
 			throw new IllegalStateException(
 					"Foi tentado adicionar um proponente com equals true com esse daqui "
@@ -78,11 +81,13 @@ public class Proposta {
 	}
 
 	public Set<Proponente> proponentesPrincipais() {
+		//1
 		return this.proponentes.stream().filter(Proponente::principal)
 				.collect(Collectors.toSet());
 	}
 
 	public List<Integer> idadeProponentes() {
+		//1
 		return this.proponentes.stream()
 				.mapToInt(proponente -> proponente.getIdade()).boxed()
 				.collect(Collectors.toList());
@@ -95,6 +100,7 @@ public class Proposta {
 	 * @return
 	 */
 	public Proponente proponentePrincipal(int maximoProponentesPrincipais) {
+		//1
 		if (proponentesPrincipais().size() > maximoProponentesPrincipais) {
 			throw new IllegalStateException(
 					"Não poderia haver mais de um proponente principal "
@@ -124,6 +130,7 @@ public class Proposta {
 				siglaEstado);
 		boolean adicionou = this.garantias.add(novaGarantia);
 
+		//1
 		if (!adicionou) {
 			throw new IllegalStateException(
 					"Foi tentado adicionar uma garantia com equals true com essa daqui "
@@ -142,12 +149,14 @@ public class Proposta {
 	 */
 	public Collection<Garantia> garantiasEmDeterminadosEstados(
 			Collection<SiglaEstado> siglas) {
+		//1
 		return this.garantias.stream()
 				.filter(garantia -> garantia.pertenceAEstados(siglas))
 				.collect(Collectors.toSet());
 	}
 
 	public BigDecimal somaGarantias() {
+		//2
 		return this.garantias.stream().map(garantia -> garantia.getValor())
 				.reduce(BigDecimal.ZERO,
 						(atual, proximo) -> atual.add(proximo));
