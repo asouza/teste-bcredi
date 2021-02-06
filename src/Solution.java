@@ -21,7 +21,10 @@ public class Solution {
   // Complete a função para retornar uma String com os IDs das propostas válidas no seguinte formato (separado por vírgula):
   // "52f0b3f2-f838-4ce2-96ee-9876dd2c0cf6,51a41350-d105-4423-a9cf-5a24ac46ae84,50cedd7f-44fd-4651-a4ec-f55c742e3477"
   public static String processMessages(List<String> messages) {
-	  Map<String, Logica> logicas = Map.of("proposal.created",new CriaProposta());			  
+	  Map<String, Logica> logicas = Map.of(
+			  "proposal.created",new CriaProposta(),
+			  "proponent.added",new AdicionaProponente()
+			  );			  
 	  Propostas propostas = new Propostas();	
 	  List<Validacao> validacoes = List.of(new ValorDoEmprestimo(),new TempoMaximoPagamento());
 	  Set<String> idPropostasValidas = new HashSet<>();
@@ -39,9 +42,7 @@ public class Solution {
 		Objects.requireNonNull(logicaASerExecutada, "Não foi possível encontrar a lógica para o tipo "+tipoLogica);
 		
 		Proposta propostaASerValidada = logicaASerExecutada.executa(message,propostas);
-		
-		System.out.println(propostas);
-		
+				
 		for (Validacao validacao : validacoes) {
 			boolean resultado = validacao.taValida(propostaASerValidada);
 			if(resultado) {
@@ -54,6 +55,7 @@ public class Solution {
 		}
 	}
 	 
+	System.out.println(propostas);
     return idPropostasValidas.stream().collect(Collectors.joining(","));
   }
 }
