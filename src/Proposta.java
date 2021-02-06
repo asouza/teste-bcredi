@@ -1,6 +1,7 @@
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Proposta {
 
@@ -30,7 +31,8 @@ public class Proposta {
 	 * @return
 	 */
 	public boolean valorEntre(BigDecimal minimo, BigDecimal maximo) {
-		return this.valorEmprestimo.compareTo(minimo) >=1 && this.valorEmprestimo.compareTo(maximo) <= 1;
+		return this.valorEmprestimo.compareTo(minimo) >= 1
+				&& this.valorEmprestimo.compareTo(maximo) <= 1;
 	}
 
 	/**
@@ -41,29 +43,39 @@ public class Proposta {
 	 */
 	public boolean anosPagamentoEntre(int minimoAnos, int maximoAnos) {
 		int anosPagandoParcelas = this.parcelas / 12;
-		return anosPagandoParcelas >= minimoAnos && anosPagandoParcelas <= maximoAnos;
+		return anosPagandoParcelas >= minimoAnos
+				&& anosPagandoParcelas <= maximoAnos;
 	}
 
 	/**
 	 * 
 	 * @param idProponente id do proponent
-	 * @param nome nome do proponent
-	 * @param idade idade do proponente
-	 * @param salario salario do proponente
-	 * @param principal é o principal
+	 * @param nome         nome do proponent
+	 * @param idade        idade do proponente
+	 * @param salario      salario do proponente
+	 * @param principal    é o principal
 	 */
 	public void adicionaProponente(String idProponente, String nome, int idade,
 			BigDecimal salario, boolean principal) {
-		Proponente novoProponente = new Proponente(idProponente,nome,idade,salario,principal);
+		Proponente novoProponente = new Proponente(idProponente, nome, idade,
+				salario, principal);
 		boolean adicionou = this.proponentes.add(novoProponente);
-		
-		if(!adicionou) {
-			throw new IllegalStateException("Foi tentado adicionar um proponente com equals true com esse daqui "+novoProponente);
+
+		if (!adicionou) {
+			throw new IllegalStateException(
+					"Foi tentado adicionar um proponente com equals true com esse daqui "
+							+ novoProponente);
 		}
 	}
 
 	public int numeroProponentes() {
 		return this.proponentes.size();
+	}
+
+	public Set<Proponente> proponentesPrincipais() {
+		return this.proponentes.stream()
+				.filter(Proponente::principal)
+				.collect(Collectors.toSet());
 	}
 
 }

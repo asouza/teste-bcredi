@@ -18,6 +18,10 @@ public class Proponente {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public boolean principal() {
+		return this.principal;
+	}
+	
 	
 
 	@Override

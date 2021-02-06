@@ -30,7 +30,8 @@ public class Solution {
 	  List<Validacao> validacoes = List.of(
 			  new ValorDoEmprestimo(),
 			  new TempoMaximoPagamento(),
-			  new MinimoDoisProponentes()
+			  new MinimoDoisProponentes(),
+			  new MinimoUmProponentePrincipal()
 	  );
 	  Set<String> idPropostasValidas = new HashSet<>();
 	  
