@@ -1,6 +1,7 @@
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -39,7 +40,7 @@ public class Solution {
 			  new GarantiaDeDeterminadosEstadosNaoSaoAceitas(),
 			  new SomaDasGarantiasMaiorQueDobroEmprestimo()
 	  );
-	  Set<String> idPropostasValidas = new HashSet<>();
+	  Set<String> idPropostasValidas = new LinkedHashSet<>();
 	  
 //	* para cada linha preciso executar uma lógica em função do tipo de operacao
 //	* para cada execução de lógica eu preciso acessar possíveis propostas já criadas
@@ -67,7 +68,6 @@ public class Solution {
 		}
 	}
 	 
-	System.out.println(propostas);
     return idPropostasValidas.stream().collect(Collectors.joining(","));
   }
 }
