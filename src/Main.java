@@ -51,11 +51,11 @@ public class Main {
 
       String idsValidados = Solution.processMessages(inputLines);
       System.out.println(idsValidados);
-	if (idsValidados.equals(outputLines.get(0))) {
-        System.out.println(String.format("Test %s/%s - Passed", i + 1, outputFiles.length));
-      } else {
-        System.out.println(String.format("Test %s/%s - Failed", i + 1, outputFiles.length));
-      }
+//	if (idsValidados.equals(outputLines.get(0))) {
+//        System.out.println(String.format("Test %s/%s - Passed", i + 1, outputFiles.length));
+//      } else {
+//        System.out.println(String.format("Test %s/%s - Failed", i + 1, outputFiles.length));
+//      }
     }
   }
 }

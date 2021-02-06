@@ -62,4 +62,8 @@ public class Proposta {
 		}
 	}
 
+	public int numeroProponentes() {
+		return this.proponentes.size();
+	}
+
 }

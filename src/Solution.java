@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,11 @@ public class Solution {
 			  "proponent.added",new AdicionaProponente()
 			  );			  
 	  Propostas propostas = new Propostas();	
-	  List<Validacao> validacoes = List.of(new ValorDoEmprestimo(),new TempoMaximoPagamento());
+	  List<Validacao> validacoes = List.of(
+			  new ValorDoEmprestimo(),
+			  new TempoMaximoPagamento(),
+			  new MinimoDoisProponentes()
+	  );
 	  Set<String> idPropostasValidas = new HashSet<>();
 	  
 //	* para cada linha preciso executar uma lógica em função do tipo de operacao
@@ -35,7 +40,7 @@ public class Solution {
 //	* no final da execução só ficam as propostas que geraram uma saída verdadeira para as validações
 	  
 	for(String message : messages) {
-		String[] partesDaMensagem = message.split(",");
+		String[] partesDaMensagem = message.split(",");	
 		String tipoLogica = partesDaMensagem[1]+"."+partesDaMensagem[2];
 		Logica logicaASerExecutada = logicas.get(tipoLogica);
 		
