@@ -23,7 +23,7 @@ public class Solution {
   public static String processMessages(List<String> messages) {
 	  Map<String, Logica> logicas = Map.of("proposal.created",new CriaProposta());			  
 	  Propostas propostas = new Propostas();	
-	  List<Validacao> validacoes = List.of(new ValorDoEmprestimo());
+	  List<Validacao> validacoes = List.of(new ValorDoEmprestimo(),new TempoMaximoPagamento());
 	  Set<String> idPropostasValidas = new HashSet<>();
 	  
 //	* para cada linha preciso executar uma lógica em função do tipo de operacao
@@ -47,7 +47,8 @@ public class Solution {
 			if(resultado) {
 				idPropostasValidas.add(propostaASerValidada.id);
 			} else {
-				idPropostasValidas.remove(propostaASerValidada.id); 
+				idPropostasValidas.remove(propostaASerValidada.id);
+				break;
 			}
 			
 		}
