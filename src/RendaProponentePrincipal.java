@@ -12,6 +12,12 @@ public class RendaProponentePrincipal implements Validacao {
 			return proponente.rendaMinima(proposta.projetaValorParcela(3));
 		}
 		
+		proponente.rendaAceitavel(
+				new Combinacao(18,24,proposta.projetaValorParcela(4)),
+				new Combinacao(25,50,proposta.projetaValorParcela(3)),
+				new Combinacao(51,200,proposta.projetaValorParcela(2))				
+				);
+		
 		return proponente.rendaMinima(proposta.projetaValorParcela(2));
 	}
 
