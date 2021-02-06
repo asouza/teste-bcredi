@@ -40,10 +40,6 @@ public class Proposta {
 				&& this.valorEmprestimo.compareTo(maximo) < 1;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(new BigDecimal("3500000.0").compareTo(new BigDecimal("3000000")));
-	}
-
 	/**
 	 * 
 	 * @param minimoAnos minimo de anos para pagar
