@@ -58,6 +58,10 @@ public class Proponente {
 			return false;
 		return true;
 	}
+
+	public int getIdade() {
+		return idade;
+	}
 	
 	
 

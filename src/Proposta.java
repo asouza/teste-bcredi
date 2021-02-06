@@ -1,6 +1,7 @@
 import java.math.BigDecimal;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.Set;import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Proposta {
@@ -73,9 +74,15 @@ public class Proposta {
 	}
 
 	public Set<Proponente> proponentesPrincipais() {
-		return this.proponentes.stream()
-				.filter(Proponente::principal)
+		return this.proponentes.stream().filter(Proponente::principal)
 				.collect(Collectors.toSet());
+	}
+
+	public List<Integer> idadeProponentes() {
+		return this.proponentes.stream()
+				.mapToInt(proponente -> proponente.getIdade())
+				.boxed()
+				.collect(Collectors.toList());
 	}
 
 }
