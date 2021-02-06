@@ -1,9 +1,11 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Proposta {
 
@@ -82,21 +84,23 @@ public class Proposta {
 
 	public List<Integer> idadeProponentes() {
 		return this.proponentes.stream()
-				.mapToInt(proponente -> proponente.getIdade())
-				.boxed()
+				.mapToInt(proponente -> proponente.getIdade()).boxed()
 				.collect(Collectors.toList());
 	}
 
 	/**
 	 * 
-	 * @param maximoProponentesPrincipais maximo de proponentes principais que deve ter na proposta
+	 * @param maximoProponentesPrincipais maximo de proponentes principais que
+	 *                                    deve ter na proposta
 	 * @return
 	 */
 	public Proponente proponentePrincipal(int maximoProponentesPrincipais) {
-		if(proponentesPrincipais().size() > maximoProponentesPrincipais) {
-			throw new IllegalStateException("Não poderia haver mais de um proponente principal "+proponentes);
+		if (proponentesPrincipais().size() > maximoProponentesPrincipais) {
+			throw new IllegalStateException(
+					"Não poderia haver mais de um proponente principal "
+							+ proponentes);
 		}
-		
+
 		return proponentesPrincipais().iterator().next();
 	}
 
@@ -106,28 +110,36 @@ public class Proposta {
 	 * @return
 	 */
 	public BigDecimal projetaValorParcela(int multiplicador) {
-		//aqui eu preciso entender mais do negócio para ser o arredondamento
-		BigDecimal valorParcela = this.valorEmprestimo.divide(new BigDecimal(this.parcelas), RoundingMode.HALF_UP);
-		BigDecimal valorParcelaProjetado = valorParcela.multiply(new BigDecimal(multiplicador));
+		// aqui eu preciso entender mais do negócio para ser o arredondamento
+		BigDecimal valorParcela = this.valorEmprestimo
+				.divide(new BigDecimal(this.parcelas), RoundingMode.HALF_UP);
+		BigDecimal valorParcelaProjetado = valorParcela
+				.multiply(new BigDecimal(multiplicador));
 		return valorParcelaProjetado;
 	}
 
 	public void adicionaGarantia(String idGarantia, BigDecimal valorGarantia,
 			SiglaEstado siglaEstado) {
-		Garantia novaGarantia = new Garantia(idGarantia,valorGarantia,siglaEstado);
+		Garantia novaGarantia = new Garantia(idGarantia, valorGarantia,
+				siglaEstado);
 		boolean adicionou = this.garantias.add(novaGarantia);
-		
+
 		if (!adicionou) {
 			throw new IllegalStateException(
 					"Foi tentado adicionar uma garantia com equals true com essa daqui "
 							+ novaGarantia);
-		}		
+		}
 	}
 
 	public int numeroGarantias() {
 		return this.garantias.size();
 	}
-	
-	
+
+	public Collection<Garantia> garantiasForaDosEstados(
+			Collection<SiglaEstado> siglas) {
+		return this.garantias.stream()
+				.filter(garantia -> !garantia.pertenceAEstados(siglas))
+				.collect(Collectors.toSet());
+	}
 
 }

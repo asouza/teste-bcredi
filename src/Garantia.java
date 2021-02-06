@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.Collection;
 
 public class Garantia {
 
@@ -43,6 +44,10 @@ public class Garantia {
 	public String toString() {
 		return "Garantia [idGarantia=" + idGarantia + ", valorGarantia="
 				+ valorGarantia + ", siglaEstado=" + siglaEstado + "]";
+	}
+
+	public boolean pertenceAEstados(Collection<SiglaEstado> siglas) {
+		return siglas.contains(this.siglaEstado);
 	}
 	
 	
