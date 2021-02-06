@@ -19,4 +19,8 @@ public class Proposta {
 				+ ", parcelas=" + parcelas + "]";
 	}
 
+	public boolean valorEntre(BigDecimal minimo, BigDecimal maximo) {
+		return this.valorEmprestimo.compareTo(minimo) >=1 && this.valorEmprestimo.compareTo(maximo) <= 1;
+	}
+
 }

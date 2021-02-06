@@ -1,7 +1,10 @@
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Solution {
 	
@@ -19,7 +22,9 @@ public class Solution {
   // "52f0b3f2-f838-4ce2-96ee-9876dd2c0cf6,51a41350-d105-4423-a9cf-5a24ac46ae84,50cedd7f-44fd-4651-a4ec-f55c742e3477"
   public static String processMessages(List<String> messages) {
 	  Map<String, Logica> logicas = Map.of("proposal.created",new CriaProposta());			  
-	  Propostas propostas = new Propostas();	  
+	  Propostas propostas = new Propostas();	
+	  List<Validacao> validacoes = List.of(new ValorDoEmprestimo());
+	  Set<String> idPropostasValidas = new HashSet<>();
 	  
 //	* para cada linha preciso executar uma lógica em função do tipo de operacao
 //	* para cada execução de lógica eu preciso acessar possíveis propostas já criadas
@@ -37,9 +42,17 @@ public class Solution {
 		
 		System.out.println(propostas);
 		
-		
+		for (Validacao validacao : validacoes) {
+			boolean resultado = validacao.taValida(propostaASerValidada);
+			if(resultado) {
+				idPropostasValidas.add(propostaASerValidada.id);
+			} else {
+				idPropostasValidas.remove(propostaASerValidada.id); 
+			}
+			
+		}
 	}
 	 
-    return "";
+    return idPropostasValidas.stream().collect(Collectors.joining(","));
   }
 }
