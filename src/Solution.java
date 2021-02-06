@@ -14,6 +14,12 @@ public class Solution {
   // Complete a função para retornar uma String com os IDs das propostas válidas no seguinte formato (separado por vírgula):
   // "52f0b3f2-f838-4ce2-96ee-9876dd2c0cf6,51a41350-d105-4423-a9cf-5a24ac46ae84,50cedd7f-44fd-4651-a4ec-f55c742e3477"
   public static String processMessages(List<String> messages) {
+	  
+//	* para cada linha preciso executar uma lógica em função do tipo de operacao
+//	* para cada execução de lógica eu preciso acessar possíveis propostas já criadas
+//	* para cada linha também já pode ir executando as validações por proposta
+//	* no final da execução só ficam as propostas que geraram uma saída verdadeira para as validações
+	 
     return "";
   }
 }
