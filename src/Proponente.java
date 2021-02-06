@@ -62,6 +62,25 @@ public class Proponente {
 	public int getIdade() {
 		return idade;
 	}
+
+	/**
+	 * 
+	 * @param minima idade minima
+	 * @param maxima idade maxima
+	 * @return
+	 */
+	public boolean idadeEntre(int minima, int maxima) {
+		return idade >= minima && idade <= maxima;
+	}
+
+	/**
+	 * 
+	 * @param valor valor mínimo para a renda
+	 * @return
+	 */
+	public boolean rendaMinima(BigDecimal valor) {
+		return this.salario.compareTo(valor) >= 0;
+	}
 	
 	
 

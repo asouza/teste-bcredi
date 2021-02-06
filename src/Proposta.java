@@ -1,6 +1,8 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -83,6 +85,31 @@ public class Proposta {
 				.mapToInt(proponente -> proponente.getIdade())
 				.boxed()
 				.collect(Collectors.toList());
+	}
+
+	/**
+	 * 
+	 * @param maximoProponentesPrincipais maximo de proponentes principais que deve ter na proposta
+	 * @return
+	 */
+	public Proponente proponentePrincipal(int maximoProponentesPrincipais) {
+		if(proponentesPrincipais().size() > maximoProponentesPrincipais) {
+			throw new IllegalStateException("Não poderia haver mais de um proponente principal "+proponentes);
+		}
+		
+		return proponentesPrincipais().iterator().next();
+	}
+
+	/**
+	 * 
+	 * @param multiplicador multiplicador do valor da parcela
+	 * @return
+	 */
+	public BigDecimal projetaValorParcela(int multiplicador) {
+		//aqui eu preciso entender mais do negócio para ser o arredondamento
+		BigDecimal valorParcela = this.valorEmprestimo.divide(new BigDecimal(this.parcelas), RoundingMode.HALF_UP);
+		BigDecimal valorParcelaProjetado = valorParcela.multiply(new BigDecimal(multiplicador));
+		return valorParcelaProjetado;
 	}
 
 }

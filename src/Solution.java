@@ -32,7 +32,8 @@ public class Solution {
 			  new TempoMaximoPagamento(),
 			  new MinimoDoisProponentes(),
 			  new MinimoUmProponentePrincipal(),
-			  new TodosProponentesDevemSerMaioresDeDezoito()
+			  new TodosProponentesDevemSerMaioresDeDezoito(),
+			  new RendaProponentePrincipal()
 	  );
 	  Set<String> idPropostasValidas = new HashSet<>();
 	  
