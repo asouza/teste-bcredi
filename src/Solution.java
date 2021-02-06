@@ -34,7 +34,8 @@ public class Solution {
 			  new MinimoDoisProponentes(),
 			  new MinimoUmProponentePrincipal(),
 			  new TodosProponentesDevemSerMaioresDeDezoito(),
-			  new RendaProponentePrincipal()
+			  new RendaProponentePrincipal(),
+			  new MinimoDeUmaGarantia()
 	  );
 	  Set<String> idPropostasValidas = new HashSet<>();
 	  

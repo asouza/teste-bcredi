@@ -123,6 +123,10 @@ public class Proposta {
 							+ novaGarantia);
 		}		
 	}
+
+	public int numeroGarantias() {
+		return this.garantias.size();
+	}
 	
 	
 
