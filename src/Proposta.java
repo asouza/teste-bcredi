@@ -144,7 +144,7 @@ public class Proposta {
 
 	/**
 	 * 
-	 * @param siglas siglas de estados que nao queremos ter garantias
+	 * @param siglas siglas de estados que queremos ter garantias
 	 * @return
 	 */
 	public Collection<Garantia> garantiasEmDeterminadosEstados(
