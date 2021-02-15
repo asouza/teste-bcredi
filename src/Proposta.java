@@ -36,10 +36,12 @@ public class Proposta {
 	 * @param minimo valor mínimo da proposta
 	 * @param maximo valor máximo da proposta
 	 * @return
+	 * 
 	 */
-	public boolean valorEntre(BigDecimal minimo, BigDecimal maximo) {
-		return this.valorEmprestimo.compareTo(minimo) >= 1
-				&& this.valorEmprestimo.compareTo(maximo) < 1;
+	public boolean valorEntre(BigDecimal minimo, 
+			BigDecimal maximo) {
+		return this.valorEmprestimo.compareTo(minimo) > 0
+		&& this.valorEmprestimo.compareTo(maximo) < 0;
 	}
 	
 	/**
